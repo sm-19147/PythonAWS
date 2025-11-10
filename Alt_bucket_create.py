@@ -22,15 +22,11 @@ def create_bucket(bucket_name, region):
         if region != 'us-east-1':
             bucket_config['CreateBucketConfiguration'] = {'LocationConstraint': region}
 
-        s3_client.create_bucket(Bucket='nicebucket19599',**bucket_config) #Edit the bucket name here
+        s3_client.create_bucket(Bucket = new_bucket, **bucket_config) #Edit the bucket name here
     except ClientError as e:
         logging.error(e)
         return False
-    return True
-create_bucket('thisisauniquebucketname22180','us-east-1')
+    return print(f"Bucket {new_bucket} created successfully in {region} region.")
 
-response = boto3.client('s3').create_bucket(
-    Bucket='yetanotherboto3bucket123456',
-)
-
-print(response)
+new_bucket = 'uniquebucket28882'  # Change to a unique bucket name
+response = create_bucket(new_bucket,'us-west-1')
